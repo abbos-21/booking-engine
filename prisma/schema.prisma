@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  tel String @unique
+  password String
+  isAdmin Boolean @default(false)
+  name String
+  bookings Booking[]
+  createdAt DateTime @default(now())
+}
+
+model Room {
+  id                 Int        @id @default(autoincrement())
+  number         String     @unique
+  name String
+  description String
+  price Float
+  imgs String?
+  isAvailable        Boolean    @default(true)
+  nextAvailableDateTime DateTime?
+  bookings           Booking[]
+  createdAt          DateTime   @default(now())
+}
+
+model Booking {
+  id              Int       @id @default(autoincrement())
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
+  room            Room      @relation(fields: [roomId], references: [id])
+  roomId          Int
+  createdAt       DateTime   @default(now())
+}

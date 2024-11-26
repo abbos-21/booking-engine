@@ -1,0 +1,53 @@
+GET http://localhost:3000/info/users HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJUZWwiOiIxIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzMxNzkwMjg4LCJleHAiOjE3MzE3OTM4ODh9.4lMB6fGu4_JoH1yFreFYkSdYhQmCjelAePIXiVyTyKE
+
+###
+GET http://localhost:3000/ HTTP/1.1
+
+###
+POST http://localhost:3000/auth/register-admin HTTP/1.1
+content-type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJUZWwiOiIxIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzMxNTg3MjU4LCJleHAiOjE3MzE1OTA4NTh9.0ONjCA2rcbe1tFdmJbSUie6e0clcQypSwXRbCLLDt7g
+
+{
+    "tel": "1",
+    "password": "1",
+    "name": "Abbos"
+}
+
+###
+POST http://localhost:3000/auth/login-admin HTTP/1.1
+content-type: application/json
+
+{
+    "tel": "1",
+    "password": "1"
+}
+
+###
+POST http://localhost:3000/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "tel": "+998946667410",
+    "password": "@Abbos2006",
+    "name": "Abror"
+}
+
+###
+DELETE http://localhost:3000/users/delete?id=2 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInVzZXJUZWwiOiIrOTk4OTQ2NjY3NDEwIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTczMjA5NTgyOCwiZXhwIjoxNzMyMzU1MDI4fQ.vlLC8HpA8ZTwwSZYqd1FvBl6dn4skzZJL4SuXa8zOsQ
+
+###
+POST http://localhost:3000/rooms/create HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJUZWwiOiIxIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzMyMTg4MjkwLCJleHAiOjE3MzI0NDc0OTB9.NznMsg7hfNjyuMNgxKhRDrmp0gHUg2YKM60NJ6NSrKQ
+
+{
+    "number": "4",
+    "name": "Luxury room 1",
+    "description": "First room",
+    "price": 190.90
+}
