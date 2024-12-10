@@ -5,6 +5,7 @@ import infoRoutes from "./routes/info";
 import userRoutes from "./routes/users";
 import roomRoutes from "./routes/rooms";
 import uploadRoutes from "./routes/uploads";
+import bookingRouter from "./routes/bookings";
 import cors from "cors";
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use("/info", infoRoutes);
 app.use("/users", userRoutes);
 app.use("/rooms", roomRoutes);
 app.use("/uploads", uploadRoutes);
+app.use("/bookings", bookingRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.json("Hey, you just got hacked!");

@@ -56,4 +56,21 @@ router.get("/rooms", async (req: Request, res: Response) => {
   }
 });
 
+router.get(
+  "/bookings",
+  //   authMiddleware,
+  //   requireAdmin,
+  async (req: Request, res: Response) => {
+    try {
+      const bookings = await prisma.booking.findMany({
+        include: { room: true, user: true },
+      });
+
+      res.status(200).json(bookings);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+);
+
 export default router;

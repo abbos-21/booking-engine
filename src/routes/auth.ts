@@ -49,26 +49,31 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/register-admin", async (req: Request, res: Response) => {
-  const { tel, password, name } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  try {
-    const user = await prisma.user.create({
-      data: {
-        tel,
-        password: hashedPassword,
-        isAdmin: true,
-        name,
-      },
-    });
-    res.status(201).json({
-      message: "Admin registered successfully",
-      user,
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Registration failed" });
+router.post(
+  "/register-admin",
+  // authMiddleware,
+  // requireAdmin,
+  async (req: Request, res: Response) => {
+    const { tel, password, name } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    try {
+      const user = await prisma.user.create({
+        data: {
+          tel,
+          password: hashedPassword,
+          isAdmin: true,
+          name,
+        },
+      });
+      res.status(201).json({
+        message: "Admin registered successfully",
+        user,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Registration failed" });
+    }
   }
-});
+);
 
 router.post("/login", async (req: Request, res: Response): Promise<any> => {
   try {
